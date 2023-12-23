@@ -65,7 +65,8 @@ public interface MessageBuilder {
  * A message can have up to 10 embeds.
  */
 public inline fun MessageBuilder.embed(builder: EmbedBuilder.() -> Unit) {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     val embed = EmbedBuilder().apply(builder)
     embeds?.add(embed) ?: run { embeds = mutableListOf(embed) }
 }
@@ -89,7 +90,8 @@ public inline fun MessageBuilder.allowedMentions(builder: AllowedMentionsBuilder
  * A message can have up to five action rows.
  */
 public inline fun MessageBuilder.actionRow(builder: ActionRowBuilder.() -> Unit) {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     val actionRow = ActionRowBuilder().apply(builder)
     components?.add(actionRow) ?: run { components = mutableListOf(actionRow) }
 }
@@ -104,7 +106,8 @@ public inline fun MessageBuilder.addFile(
     contentProvider: ChannelProvider,
     builder: AttachmentBuilder.() -> Unit,
 ): NamedFile {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     // see https://discord.com/developers/docs/reference#uploading-files:
     // we use the index of a file in the `files` list as `n` in `files[n]`, as implemented in `MultipartRequest.data`
     /** (clickable link: [MultipartRequest.data]) */

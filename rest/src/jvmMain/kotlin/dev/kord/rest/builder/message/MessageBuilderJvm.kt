@@ -17,6 +17,8 @@ public fun MessageBuilder.addFile(path: Path): NamedFile =
  * The corresponding attachment object can be configured with [builder].
  */
 public inline fun MessageBuilder.addFile(path: Path, builder: AttachmentBuilder.() -> Unit): NamedFile {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     return addFile(path.fileName.toString(), ChannelProvider { path.readChannel() }, builder)
 }

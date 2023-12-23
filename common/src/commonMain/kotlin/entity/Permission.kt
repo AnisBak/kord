@@ -630,12 +630,11 @@ public class Permissions internal constructor(
         return Builder(code.copy()).apply(builder).build()
     }
 
-    @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated(
         "'Permissions.PermissionsBuilder' is deprecated, use 'Permissions.Builder' instead.",
         level = DeprecationLevel.HIDDEN,
     )
-    @kotlin.internal.LowPriorityInOverloadResolution
     public inline fun copy(block: PermissionsBuilder.() -> Unit): Permissions {
         contract { callsInPlace(block, EXACTLY_ONCE) }
         return PermissionsBuilder(code.copy()).apply(block).permissions()
@@ -764,12 +763,11 @@ public inline fun Permissions(builder: Permissions.Builder.() -> Unit = {}): Per
     return Permissions.Builder().apply(builder).build()
 }
 
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "'Permissions.PermissionsBuilder' is deprecated, use 'Permissions.Builder' instead.",
     level = DeprecationLevel.HIDDEN,
 )
-@kotlin.internal.LowPriorityInOverloadResolution
 public inline fun Permissions(block: Permissions.PermissionsBuilder.() -> Unit = {}): Permissions {
     contract { callsInPlace(block, EXACTLY_ONCE) }
     return Permissions.PermissionsBuilder(DiscordBitSet(0)).apply(block).permissions()

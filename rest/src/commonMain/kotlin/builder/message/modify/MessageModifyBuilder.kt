@@ -35,7 +35,8 @@ public sealed interface MessageModifyBuilder : MessageBuilder {
  * The attachment object can optionally be edited with [builder].
  */
 public inline fun MessageModifyBuilder.keepAttachment(id: Snowflake, builder: AttachmentBuilder.() -> Unit = {}) {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     val attachment = AttachmentBuilder(id).apply(builder)
     attachments?.add(attachment) ?: run { attachments = mutableListOf(attachment) }
 }
@@ -77,17 +78,18 @@ public sealed class AbstractMessageModifyBuilder : MessageModifyBuilder {
 }
 
 
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "RemoveRedundantQualifierName")
-@kotlin.internal.LowPriorityInOverloadResolution
+@Suppress("RemoveRedundantQualifierName")
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.embed'.",
     ReplaceWith("this.embed(block)", imports = ["dev.kord.rest.builder.message.embed"]),
     DeprecationLevel.ERROR,
 )
 public inline fun MessageModifyBuilder.embed(block: EmbedBuilder.() -> Unit) {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+//    }
     embedExtensionOnNewSupertype(block)
 }
 
@@ -96,8 +98,7 @@ public inline fun MessageModifyBuilder.embed(block: EmbedBuilder.() -> Unit) {
  * (ping everything), calling this function but not configuring it before the request is build will result in all
  * pings being ignored.
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "RemoveRedundantQualifierName")
-@kotlin.internal.LowPriorityInOverloadResolution
+@Suppress("RemoveRedundantQualifierName")
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.allowedMentions'.",
     ReplaceWith("this.allowedMentions(block)", imports = ["dev.kord.rest.builder.message.allowedMentions"]),
@@ -110,17 +111,18 @@ public inline fun MessageModifyBuilder.allowedMentions(block: AllowedMentionsBui
     allowedMentionsExtensionOnNewSupertype(block)
 }
 
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "RemoveRedundantQualifierName")
-@kotlin.internal.LowPriorityInOverloadResolution
+@Suppress("RemoveRedundantQualifierName")
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.actionRow'.",
     ReplaceWith("this.actionRow(builder)", imports = ["dev.kord.rest.builder.message.actionRow"]),
     DeprecationLevel.ERROR,
 )
 public inline fun MessageModifyBuilder.actionRow(builder: ActionRowBuilder.() -> Unit) {
-    contract {
-        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//    }
     actionRowExtensionOnNewSupertype(builder)
 }
 
@@ -129,8 +131,7 @@ public inline fun MessageModifyBuilder.actionRow(builder: ActionRowBuilder.() ->
  *
  * **Only supports [MessageFlag.SuppressEmbeds]**
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "RemoveRedundantQualifierName")
-@kotlin.internal.LowPriorityInOverloadResolution
+@Suppress("RemoveRedundantQualifierName")
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.messageFlags'.",
     ReplaceWith("this.messageFlags(builder)", imports = ["dev.kord.rest.builder.message.messageFlags"]),

@@ -128,7 +128,8 @@ public suspend inline fun TopGuildChannelBehavior.editRolePermission(
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
-    kord.rest.channel.editRolePermission(channelId = id, roleId = roleId, builder = builder)
+    // removed argument name because of https://youtrack.jetbrains.com/issue/KT-63414
+    kord.rest.channel.editRolePermission(channelId = id, roleId = roleId, builder)
 }
 
 /**
@@ -143,5 +144,6 @@ public suspend inline fun TopGuildChannelBehavior.editMemberPermission(
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
-    kord.rest.channel.editMemberPermissions(channelId = id, memberId = memberId, builder = builder)
+    // removed argument name because of https://youtrack.jetbrains.com/issue/KT-63414
+    kord.rest.channel.editMemberPermissions(channelId = id, memberId = memberId, builder)
 }

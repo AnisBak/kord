@@ -28,9 +28,10 @@ public suspend inline fun <T> RequestRateLimiter.consume(
     request: Request<*, *>,
     consumer: (token: RequestToken) -> T
 ): T {
-    contract {
-        callsInPlace(consumer, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(consumer, InvocationKind.EXACTLY_ONCE)
+//    }
     val token = await(request)
     try {
         val result = consumer(token)

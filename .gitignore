@@ -1,7 +1,7 @@
 .fleet/
 .gradle/
 .idea/
-out/
+.kotlin/
 
 **/build/*
 !**/build/generated/

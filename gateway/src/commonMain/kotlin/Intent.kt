@@ -438,12 +438,11 @@ public class Intents internal constructor(
         return Builder(code.copy()).apply(builder).build()
     }
 
-    @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated(
         "'Intents.IntentsBuilder' is deprecated, use 'Intents.Builder' instead.",
         level = DeprecationLevel.HIDDEN,
     )
-    @kotlin.internal.LowPriorityInOverloadResolution
     public inline fun copy(block: IntentsBuilder.() -> Unit): Intents {
         contract { callsInPlace(block, EXACTLY_ONCE) }
         return IntentsBuilder(code.copy()).apply(block).flags()
@@ -591,9 +590,8 @@ public inline fun Intents(builder: Intents.Builder.() -> Unit = {}): Intents {
     return Intents.Builder().apply(builder).build()
 }
 
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated("'Intents.IntentsBuilder' is deprecated, use 'Intents.Builder' instead.", level = DeprecationLevel.HIDDEN)
-@kotlin.internal.LowPriorityInOverloadResolution
 public inline fun Intents(builder: Intents.IntentsBuilder.() -> Unit = {}): Intents {
     contract { callsInPlace(builder, EXACTLY_ONCE) }
     return Intents.IntentsBuilder().apply(builder).flags()

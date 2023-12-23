@@ -72,7 +72,8 @@ public inline fun GuildOnboardingModifyBuilder.prompt(
     inOnboarding: Boolean,
     builder: OnboardingPromptBuilder.() -> Unit,
 ) {
-    contract { callsInPlace(builder, EXACTLY_ONCE) }
+    // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(builder, EXACTLY_ONCE) }
     val prompt = OnboardingPromptBuilder(type, title, singleSelect, required, inOnboarding).apply(builder)
     prompts?.add(prompt) ?: run { prompts = mutableListOf(prompt) }
 }

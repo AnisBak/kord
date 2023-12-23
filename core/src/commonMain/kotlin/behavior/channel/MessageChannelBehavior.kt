@@ -294,9 +294,11 @@ public suspend inline fun MessageChannelBehavior.createMessage(builder: UserMess
  * @throws [RestRequestException] if something went wrong during the request.
  */
 public suspend inline fun MessageChannelBehavior.createEmbed(block: EmbedBuilder.() -> Unit): Message {
-    contract {
-        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+//    }
     return createMessage { embed(block) }
 }
 
@@ -316,9 +318,6 @@ public suspend inline fun MessageChannelBehavior.createEmbed(block: EmbedBuilder
  * @throws RestRequestException if something went wrong during a [type][MessageChannelBehavior.type] request.
  */
 public suspend fun <T : MessageChannelBehavior, R> T.withTyping(block: suspend T.() -> R): R {
-    // see contract in `coroutineScope {}`
-    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
-
     type() // guarantees that the typing indicator is triggered before `block` is called
     return coroutineScope {
         val typingJob = launch {

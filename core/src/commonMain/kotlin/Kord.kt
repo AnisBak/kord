@@ -39,9 +39,6 @@ import kotlin.contracts.contract
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.channels.Channel as CoroutineChannel
 
-@Deprecated("Use your own logger instead, this will be removed in the future.", level = DeprecationLevel.WARNING)
-public val kordLogger: mu.KLogger = mu.KotlinLogging.logger { }
-
 private val logger = KotlinLogging.logger { }
 
 @PublishedApi
@@ -119,9 +116,10 @@ public class Kord(
      * Logs in to the configured [Gateways][Gateway]. Suspends until [logout] or [shutdown] is called.
      */
     public suspend inline fun login(builder: LoginBuilder.() -> Unit = {}) {
-        contract {
-            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-        }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract {
+//            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//        }
         val loginBuilder = LoginBuilder().apply(builder)
         gateway.start(resources.token) {
             shard = DiscordShard(0, resources.shards.totalShards)
@@ -168,7 +166,8 @@ public class Kord(
     public suspend inline fun updateApplicationRoleConnectionMetadataRecords(
         builder: ApplicationRoleConnectionMetadataRecordsBuilder.() -> Unit,
     ): List<ApplicationRoleConnectionMetadata> {
-        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
         return rest.applicationRoleConnectionMetadata
             .updateApplicationRoleConnectionMetadataRecords(selfId, builder)
             .map { ApplicationRoleConnectionMetadata(data = it, kord = this) }
@@ -530,7 +529,8 @@ public class Kord(
         builder: GlobalMultiApplicationCommandBuilder.() -> Unit,
     ): Flow<GlobalApplicationCommand> {
 
-        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
         val commands = rest.interaction.createGlobalApplicationCommands(resources.applicationId, builder)
         return flow {
             commands.forEach {
@@ -598,7 +598,8 @@ public class Kord(
         guildId: Snowflake,
         builder: GuildMultiApplicationCommandBuilder.() -> Unit,
     ): Flow<GuildApplicationCommand> {
-        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
 
         val commands = rest.interaction.createGuildApplicationCommands(resources.applicationId, guildId, builder)
 

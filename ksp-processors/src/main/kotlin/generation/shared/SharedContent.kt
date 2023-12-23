@@ -1,7 +1,10 @@
 package dev.kord.ksp.generation.shared
 
 import com.squareup.kotlinpoet.*
-import com.squareup.kotlinpoet.KModifier.*
+// can't use star import because of https://youtrack.jetbrains.com/issue/KT-64488
+import com.squareup.kotlinpoet.KModifier.INTERNAL
+import com.squareup.kotlinpoet.KModifier.OVERRIDE
+import com.squareup.kotlinpoet.KModifier.PUBLIC
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import dev.kord.ksp.*
 import dev.kord.ksp.generation.GenerationEntity

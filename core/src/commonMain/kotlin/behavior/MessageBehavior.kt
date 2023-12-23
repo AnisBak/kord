@@ -253,8 +253,9 @@ public suspend inline fun MessageBehavior.edit(builder: UserMessageModifyBuilder
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
+    // removed argument name because of https://youtrack.jetbrains.com/issue/KT-63414
     val response =
-        kord.rest.channel.editMessage(channelId = channelId, messageId = id, builder = builder)
+        kord.rest.channel.editMessage(channelId = channelId, messageId = id, builder)
     val data = MessageData.from(response)
 
     return Message(data, kord)
@@ -276,9 +277,11 @@ public suspend inline fun MessageBehavior.edit(
     threadId: Snowflake? = null,
     builder: WebhookMessageModifyBuilder.() -> Unit
 ): Message {
-    contract {
-        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//    }
     val response = kord.rest.webhook.editWebhookMessage(webhookId, token, messageId = id, threadId, builder)
     val data = MessageData.from(response)
     return Message(data, kord)

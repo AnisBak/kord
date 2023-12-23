@@ -107,9 +107,10 @@ public class WebhookService(requestHandler: RequestHandler) : RestService(reques
         threadId: Snowflake? = null,
         builder: WebhookMessageCreateBuilder.() -> Unit
     ): DiscordMessage? {
-        contract {
-            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-        }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract {
+//            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//        }
 
         return call(Route.ExecuteWebhookPost) {
             webhookIdTokenWaitThreadId(webhookId, token, wait, threadId)
@@ -159,9 +160,10 @@ public class WebhookService(requestHandler: RequestHandler) : RestService(reques
         threadId: Snowflake? = null,
         builder: WebhookMessageModifyBuilder.() -> Unit
     ): DiscordMessage {
-        contract {
-            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-        }
+        // commented out because of https://youtrack.jetbrains.com/issue/KT-63414
+//        contract {
+//            callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//        }
 
         return call(Route.EditWebhookMessage) {
             webhookIdTokenMessageIdThreadId(webhookId, token, messageId, threadId)

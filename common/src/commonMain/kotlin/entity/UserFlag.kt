@@ -544,12 +544,11 @@ public class UserFlags internal constructor(
         return Builder(code).apply(builder).build()
     }
 
-    @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated(
         "'UserFlags.UserFlagsBuilder' is deprecated, use 'UserFlags.Builder' instead.",
         level = DeprecationLevel.HIDDEN,
     )
-    @kotlin.internal.LowPriorityInOverloadResolution
     public inline fun copy(block: UserFlagsBuilder.() -> Unit): UserFlags {
         contract { callsInPlace(block, EXACTLY_ONCE) }
         return UserFlagsBuilder(code).apply(block).flags()

@@ -156,12 +156,11 @@ public data class DiscordOptionallyMemberUser(
     val member: Optional<DiscordGuildMember> = Optional.Missing(),
 )
 
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE", "DEPRECATION_ERROR")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "'UserFlags.UserFlagsBuilder' is deprecated, use 'UserFlags.Builder' instead.",
     level = DeprecationLevel.HIDDEN,
 )
-@kotlin.internal.LowPriorityInOverloadResolution
 public inline fun UserFlags(builder: UserFlags.UserFlagsBuilder.() -> Unit): UserFlags {
     contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
     return UserFlags.UserFlagsBuilder().apply(builder).flags()

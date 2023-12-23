@@ -234,7 +234,7 @@ public class InteractionService(requestHandler: RequestHandler) : RestService(re
         )
     }
 
-    public suspend inline fun <Builder : BaseChoiceBuilder<*>> createBuilderAutoCompleteInteractionResponse(
+    public suspend inline fun <Builder : BaseChoiceBuilder<*, *>> createBuilderAutoCompleteInteractionResponse(
         interactionId: Snowflake,
         interactionToken: String,
         builder: Builder,

@@ -77,15 +77,15 @@ public sealed class AbstractMessageCreateBuilder : MessageCreateBuilder {
 /**
  * Adds an embed to the message, configured by the [block]. A message can have up to 10 embeds.
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-@kotlin.internal.LowPriorityInOverloadResolution
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.embed'.",
     ReplaceWith("this.embed(block)", imports = ["dev.kord.rest.builder.message.embed"]),
     DeprecationLevel.ERROR,
 )
 public inline fun MessageCreateBuilder.embed(block: EmbedBuilder.() -> Unit) {
-    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     embedExtensionOnNewSupertype(block)
 }
 
@@ -94,8 +94,6 @@ public inline fun MessageCreateBuilder.embed(block: EmbedBuilder.() -> Unit) {
  * (ping everything), calling this function but not configuring it before the request is build will result in all
  * pings being ignored.
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-@kotlin.internal.LowPriorityInOverloadResolution
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.allowedMentions'.",
     ReplaceWith("this.allowedMentions(block)", imports = ["dev.kord.rest.builder.message.allowedMentions"]),
@@ -109,17 +107,17 @@ public inline fun MessageCreateBuilder.allowedMentions(block: AllowedMentionsBui
 /**
  * Adds an Action Row to the message, configured by the [builder]. A message can have up to 5 action rows.
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-@kotlin.internal.LowPriorityInOverloadResolution
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.actionRow'.",
     ReplaceWith("this.actionRow(builder)", imports = ["dev.kord.rest.builder.message.actionRow"]),
     DeprecationLevel.ERROR,
 )
 public inline fun MessageCreateBuilder.actionRow(builder: ActionRowBuilder.() -> Unit) {
-    contract {
-        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
-    }
+    // commented out, called function also had contract commented out because of
+    // https://youtrack.jetbrains.com/issue/KT-63414
+//    contract {
+//        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+//    }
     actionRowExtensionOnNewSupertype(builder)
 }
 
@@ -128,8 +126,6 @@ public inline fun MessageCreateBuilder.actionRow(builder: ActionRowBuilder.() ->
  *
  * **Only supports [MessageFlag.SuppressEmbeds] and [MessageFlag.SuppressNotifications]**
  */
-@Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-@kotlin.internal.LowPriorityInOverloadResolution
 @Deprecated(
     "Replaced by extension on 'MessageBuilder'. Change import to 'dev.kord.rest.builder.message.messageFlags'.",
     ReplaceWith("this.messageFlags(builder)", imports = ["dev.kord.rest.builder.message.messageFlags"]),
